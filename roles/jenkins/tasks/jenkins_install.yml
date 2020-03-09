@@ -1,0 +1,43 @@
+---
+  - name: Install wget and java
+    package:
+      name: "{{ item }}"
+    with_items: "{{ packages }}"
+
+  - name: ensure the jenkins apt repository key is installed 
+    apt_key:
+      url: "{{jenkins.gpg_key}}" 
+      state: present
+
+  - name: ensure the repository is configured
+    apt_repository:
+      repo: "{{jenkins.repo_URL}}" 
+      state: present
+  - name: ensure jenkins is installed 
+    apt:
+      name: jenkins
+      state: present
+      update_cache: yes
+  - name: Configure JVM Arguments
+    lineinfile:
+      dest: /etc/default/jenkins
+      regexp: '^JAVA_ARGS='
+      line: "{{ jenkins.JAVA_OPTIONS }}" 
+      insertbefore: '^DAEMON_ARGS='
+  - name: create directory init.groovy.d
+    file:
+      path: /var/lib/jenkins/init.groovy.d
+      state: directory
+      owner: root
+      group: root
+      mode: '0755'
+  - name: Copy csrf groovy  files
+    copy:
+      src: "{{ role_path }}/files/disable-csrf-protection.groovy"
+      dest: /var/lib/jenkins/init.groovy.d/disable-csrf-protection.groovy
+      mode: 0644
+  - name: Copy csrf groovy  files
+    copy:
+      src: "{{ role_path }}/files/csrf.groovy"
+      dest: /var/lib/jenkins/init.groovy.d/csrf.groovy
+      mode: 0644

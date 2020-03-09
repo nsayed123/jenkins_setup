@@ -1,0 +1,77 @@
+---
+admin_user_pass: "{{ admin_user_pass }}"
+reader_user_pass: "{{ reader_user_pass }}"
+writer_user_pass: "{{ writer_user_pass }}"
+
+packages:
+  - wget
+  - default-jre
+  - gnupg
+
+jenkins:
+  repo_URL: "deb https://pkg.jenkins.io/debian-stable binary/"
+  gpg_key: "https://pkg.jenkins.io/debian-stable/jenkins.io.key"
+  JAVA_OPTIONS: 'JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"' 
+
+jenkins_plugins:
+  - matrix-auth
+  - ldap
+  - ant
+  - matrix-project
+  - audit-trail
+  - build-with-parameters
+  - bouncycastle-api
+  - pam-auth
+  - external-monitor-job
+  - groovy
+  - python
+  - periodicbackup
+  - packer
+  - ansicolor
+  - pipeline-utility-steps
+  - role-strategy
+  - script-security 
+  - antisamy-markup-formatter
+  - translation
+  - credentials
+  - mailer
+  - structs
+  - workflow-api
+  - command-launcher
+  - workflow-step-api
+  - jdk-tool
+  - scm-api
+  - trilead-api
+  - junit
+  - jaxb
+  - workflow-aggregator
+  - display-url-api
+  - workflow-basic-steps
+  - apache-httpcomponents-client-4-api
+  - workflow-cps-global-lib
+  - cloudbees-folder
+  - workflow-cps
+  - workflow-scm-step
+  - workflow-support
+  - workflow-multibranch
+  - workflow-job
+  - branch-api
+  - git-client
+  - ssh-credentials
+  - jsch
+  - configuration-as-code
+  - pipeline-milestone-step
+  - lockable-resources
+  - jackson2-api
+  - pipeline-stage-view
+  - pipeline-build-step
+  - pipeline-stage-step
+  - pipeline-input-step
+  - pipeline-model-definition
+  - authorize-project
+  - jquery-detached
+  - workflow-durable-task-step
+  - pipeline-rest-api
+  - ace-editor
+  - momentjs
+  - handlebars

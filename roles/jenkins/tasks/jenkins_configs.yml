@@ -1,0 +1,91 @@
+---
+  - name: Wait until the file /var/lib/jenkins/secrets/initialAdminPassword is present before continuing 
+    wait_for:
+      path: /var/lib/jenkins/secrets/initialAdminPassword
+
+  - name: Get init password Jenkins
+    command: cat /var/lib/jenkins/secrets/initialAdminPassword
+    become: true
+    register: result
+
+  - name: Print init password Jenkins
+    debug:
+      var: result.stdout
+
+  - name: Start the Jenkins
+    systemd:
+      name: jenkins
+      state: restarted
+      enabled: true
+
+  - name: pause for 120 sec 
+    pause:
+      seconds: 120
+
+  - name: complete setup wizard
+    jenkins_script:
+      script: |
+          import static jenkins.model.Jenkins.instance as jenkins
+          import jenkins.install.InstallState
+          if (!jenkins.installState.isSetupComplete()) {
+             InstallState.INITIAL_SETUP_COMPLETED.initializeState()
+           }
+      user: admin
+      password: "{{ result.stdout }}" 
+      url: "http://{{ ansible_host }}:8080/"
+ 
+  - name: install plugin
+    jenkins_plugin:
+      name: "{{ item }}"
+      state: latest
+      url_username: admin
+      url_password: "{{ result.stdout }}"
+      url: "http://{{ ansible_host }}:8080/"
+    register: plugin_result
+    until: plugin_result is success
+    retries: 10
+    delay: 5
+    with_items: "{{ jenkins_plugins }}"
+    notify:
+      - Retart Jenkins 
+
+  - name: Start the Jenkins
+    systemd:
+      name: jenkins
+      state: restarted
+      enabled: true
+
+  - name: pause for 90 sec
+    pause:
+      seconds: 90
+
+  - name: unlock and add admin user
+    jenkins_script:
+      script: "{{ lookup('file', 'templates/create_user.groovy') }}"
+      args:
+        user_pwd_admin: "{{ admin_user_pass }}"
+        user_pwd_writer: "{{ writer_user_pass }}"
+        user_pwd_reader: "{{ reader_user_pass }}"
+      user: admin
+      password: "{{ result.stdout }}"
+      url: "http://{{ ansible_host }}:8080/"
+    ignore_errors: yes
+
+  - name: Copy enable csrf groovy  files
+    copy:
+      src: "{{ role_path }}/files/enable-csrf-protection.groovy"
+      dest: /var/lib/jenkins/init.groovy.d/enable-csrf-protection.groovy
+      mode: 0644
+
+  - name: remove csrf file
+    file:
+      path: /var/lib/jenkins/init.groovy.d/csrf.groovy
+      state: absent
+
+  - name: remove disable csrf file
+    file:
+      path: /var/lib/jenkins/init.groovy.d/disable-csrf-protection.groovy
+      state: absent
+
+
+

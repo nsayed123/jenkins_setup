@@ -1,0 +1,6 @@
+---
+# tasks file for jenkins
+- include: jenkins_install.yml
+- include:  jenkins_configs.yml  
+  tags:
+      - jenkins
