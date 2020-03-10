@@ -64,15 +64,19 @@ ansible-galaxy init jenkins
 
 I have included the jenkins_install.yml and jenkins_install.yml file in the jenkins/tasks/main.yml file.
 
-Files directory contain files which is used to disable the csrf. which will bypass the GUI.
-Task direcyory contain files to install and configure Jenkins
-Templates direcyory contain the create_user.groovy, which is invoked to create users and assign repective permissions
-Test directory contain inventory file, where we define our target host where we want to install and configure Jenkins.
-vars directory contain the variable, which are invoked in jenkins_install.yml and jenkins_configs.yml
+- Files directory contain files which is used to disable the csrf. which will bypass the GUI.
+- Task direcyory contain files to install and configure Jenkins
+- Templates direcyory contain the create_user.groovy, which is invoked to create users and assign repective permissions
+- Test directory contain inventory file, where we define our target host where we want to install and configure Jenkins.
+- vars directory contain the variable, which are invoked in jenkins_install.yml and jenkins_configs.yml
 
 ## Run
 
 Make sure you are in the right directory "jenkins_setup"
+
+Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password
+
+Issue the below command
 ```
 ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>"
 
