@@ -1,5 +1,5 @@
 ---
-- hosts: worker2
+- hosts: <target_jenkins_server>
   become: yes
   roles:
     - jenkins

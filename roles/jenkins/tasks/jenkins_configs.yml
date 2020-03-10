@@ -18,7 +18,7 @@
       state: restarted
       enabled: true
 
-  - name: pause for 120 sec 
+  - name: Pause for 120 sec, so that Jenkins service comes up properly
     pause:
       seconds: 120
 
@@ -49,7 +49,7 @@
     notify:
       - Retart Jenkins 
 
-  - name: Start the Jenkins
+  - name: Start the Jenkins service, so that Plugins are installed properly
     systemd:
       name: jenkins
       state: restarted
@@ -86,6 +86,3 @@
     file:
       path: /var/lib/jenkins/init.groovy.d/disable-csrf-protection.groovy
       state: absent
-
-
-

@@ -66,9 +66,9 @@ ansible-galaxy init jenkins
 
 I have included the jenkins_install.yml and jenkins_configs.yml file in the jenkins/tasks/main.yml file.
 
-- Files directory contain files which is used to disable the csrf. which will bypass the GUI.
-- Task directory contain files to install and configure Jenkins
-- Templates directory contain the create_user.groovy, which is invoked to create users and assign repective permissions
+- Files directory contain files which is used to disable the csrf, which will bypass the GUI.
+- Task directory contain files to install and configure Jenkins.
+- Templates directory contain the create_user.groovy, which is invoked to create users and assign respective permissions.
 - Test directory contain inventory file, where we define our target host where we want to install and configure Jenkins.
 - vars directory contain the variable, which are invoked in jenkins_install.yml and jenkins_configs.yml
 
