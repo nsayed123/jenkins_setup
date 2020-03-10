@@ -4,7 +4,6 @@ reader_user_pass: "{{ reader_user_pass }}"
 writer_user_pass: "{{ writer_user_pass }}"
 
 packages:
-  - wget
   - default-jre
   - gnupg
 

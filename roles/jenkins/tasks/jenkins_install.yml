@@ -1,7 +1,8 @@
 ---
-  - name: Install wget and java
+  - name: Install java and gnupg
     package:
       name: "{{ item }}"
+      update_cache: yes
     with_items: "{{ packages }}"
 
   - name: Ensure the jenkins apt repository key is installed 
