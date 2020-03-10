@@ -4,7 +4,7 @@ This project is setting up complete Jenkins using ansible, along with the creati
 Note: This is specific to Ubuntu server.
 
 ## Requirements
-To start with this setup yo need:
+To start with this setup you need:
 * Ansible
 * git
 * Passwords for admin, writer and reader users handy
@@ -64,20 +64,22 @@ ansible-galaxy init jenkins
 
 * meta - defines some meta data for this role.
 
-I have included the jenkins_install.yml and jenkins_install.yml file in the jenkins/tasks/main.yml file.
+I have included the jenkins_install.yml and jenkins_configs.yml file in the jenkins/tasks/main.yml file.
 
 - Files directory contain files which is used to disable the csrf. which will bypass the GUI.
-- Task direcyory contain files to install and configure Jenkins
-- Templates direcyory contain the create_user.groovy, which is invoked to create users and assign repective permissions
+- Task directory contain files to install and configure Jenkins
+- Templates directory contain the create_user.groovy, which is invoked to create users and assign repective permissions
 - Test directory contain inventory file, where we define our target host where we want to install and configure Jenkins.
 - vars directory contain the variable, which are invoked in jenkins_install.yml and jenkins_configs.yml
 
 ## Run
 
 Make sure you are in the right directory "jenkins_setup"
+# 
 `
-Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password in the command before issuing it.<br />
+Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password in the command before issuing it.
 `
+# 
 This will take 10 mins to setup. It depends on number of Jenkins plugins which is defined in **vars/main.yml** file.
 Change the hosts entry inside **site.yml** file.
 Issue the below command
