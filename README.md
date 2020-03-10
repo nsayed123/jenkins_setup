@@ -75,10 +75,11 @@ I have included the jenkins_install.yml and jenkins_install.yml file in the jenk
 ## Run
 
 Make sure you are in the right directory "jenkins_setup"
-
-Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password.<br />
+`
+Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password in the command before issuing it.<br />
+`
 This will take 10 mins to setup. It depends on number of Jenkins plugins which is defined in **vars/main.yml** file.
-
+Change the hosts entry inside **site.yml** file.
 Issue the below command
 ```
 ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>"
