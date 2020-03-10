@@ -41,9 +41,6 @@
 # leading 0s:
 
 #db-[99:101]-node.example.com
-localhost ansible_host=192.168.33.10 ansible_connection=local ansible_python_interpreter=/usr/bin/python3
-[vagrant]
-worker1 ansible_host=192.168.33.11 ansible_python_interpreter=/usr/bin/python3
-worker2 ansible_host=192.168.33.12 ansible_python_interpreter=/usr/bin/python3
-worker3 ansible_host=192.168.33.13 ansible_python_interpreter=/usr/bin/python3
-worker4 ansible_host=192.168.33.14 ansible_python_interpreter=/usr/bin/python3
+#
+#Example
+#localhost ansible_host=<host_ip> ansible_connection=local ansible_python_interpreter=/usr/bin/python3

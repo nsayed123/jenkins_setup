@@ -82,7 +82,9 @@ To find the Jenkins plugins - https://plugins.jenkins.io/
 `
 # 
 This will take 10 mins to setup. It depends on number of Jenkins plugins which is defined in **vars/main.yml** file.
+Put the host name inside roles/jenkins/test/inventory file.
 Change the hosts entry inside **site.yml** file.
+
 
 Issue the below command
 ```
