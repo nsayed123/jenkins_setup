@@ -13,4 +13,70 @@ The commands below set everything up to run the examples:
 $ git clone https://github.com/nsayed123/jenkins_setup.git
 $ cd jenkins_setup
 ```
+```
+.
+├── README.md
+├── roles
+│   └── jenkins
+│       ├── defaults
+│       │   └── main.yml
+│       ├── files
+│       │   ├── csrf.groovy
+│       │   ├── disable-csrf-protection.groovy
+│       │   └── enable-csrf-protection.groovy
+│       ├── handlers
+│       │   └── main.yml
+│       ├── meta
+│       │   └── main.yml
+│       ├── README.md
+│       ├── tasks
+│       │   ├── jenkins_configs.yml
+│       │   ├── jenkins_install.yml
+│       │   ├── jenkins.yml
+│       │   └── main.yml
+│       ├── templates
+│       │   └── create_user.groovy
+│       ├── tests
+│       │   ├── inventory
+│       │   └── test.yml
+│       └── vars
+│           └── main.yml
+└── site.yml
+```
+Jenkins role was created by issuing a command
+```
+ansible-galaxy init jenkins
+```
+### Roles expect files to be in certain directory names. Each directory must contain a main.yml file. Below is a description of each directory.
+* tasks - contains the main list of tasks to be executed by the role.
 
+* handlers - contains handlers, which may be used by this role or even anywhere outside this role.
+
+* defaults - default variables for the role.
+
+* vars - other variables for the role.
+
+* files - contains files which can be deployed via this role.
+
+* templates - contains templates which can be deployed via this role.
+
+* meta - defines some meta data for this role.
+
+I have included the jenkins_install.yml and jenkins_install.yml file in the jenkins/tasks/main.yml file.
+
+Files directory contain files which is used to disable the csrf. which will bypass the GUI.
+Task direcyory contain files to install and configure Jenkins
+Templates direcyory contain the create_user.groovy, which is invoked to create users and assign repective permissions
+Test directory contain inventory file, where we define our target host where we want to install and configure Jenkins.
+vars directory contain the variable, which are invoked in jenkins_install.yml and jenkins_configs.yml
+
+## Run
+
+Make sure you are in the right directory "jenkins_setup"
+```
+ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>"
+
+If you want to run in verbose mode
+
+ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>" -vvvv
+```
