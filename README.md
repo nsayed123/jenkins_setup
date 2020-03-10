@@ -76,7 +76,7 @@ I have included the jenkins_install.yml and jenkins_install.yml file in the jenk
 
 Make sure you are in the right directory "jenkins_setup"
 
-Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password\n
+Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password.<br />
 This will take 10 mins to setup. It depends on number of Jenkins plugins which is defined in **vars/main.yml** file.
 
 Issue the below command
