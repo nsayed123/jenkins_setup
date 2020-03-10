@@ -1,6 +1,8 @@
 # Jenkins setup using Ansible
 This project is setting up complete Jenkins using ansible, along with the creation of the different types of users (admin, writer, and reader)  
 
+Note: This is specific to Ubuntu server.
+
 ## Requirements
 To start with this setup yo need:
 * Ansible
@@ -74,7 +76,8 @@ I have included the jenkins_install.yml and jenkins_install.yml file in the jenk
 
 Make sure you are in the right directory "jenkins_setup"
 
-Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password
+Note: replace "<admin_password>" with admin password, <reader_password> with reader password and <writer_password>" with writer password\n
+This will take 10 mins to setup. It depends on number of Jenkins plugins which is defined in **vars/main.yml** file.
 
 Issue the below command
 ```
