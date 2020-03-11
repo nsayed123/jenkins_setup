@@ -88,9 +88,9 @@ Change the hosts entry inside **site.yml** file.
 
 Issue the below command
 ```
-ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>"
+ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>" -i roles/jenkins/tests/inventory 
 
 If you want to run in verbose mode
 
-ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>" -vvvv
+ansible-playbook site.yml --extra-vars "admin_user_pass=<admin_password> reader_user_pass=<reader_password> writer_user_pass=<writer_password>" -i roles/jenkins/tests/inventory -vvvv
 ```
